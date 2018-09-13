@@ -1,0 +1,5 @@
+steps:
+  - name: 'gcr.io/cloud-builders/npm:latest'
+    args: ['--prefix', './', 'install']
+  - name: 'gcr.io/cloud-builders/npm:latest'
+    args: ['--prefix', './', 'run', 'deploy']
