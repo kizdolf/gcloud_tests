@@ -8,8 +8,6 @@
 const glob = require('glob');
 const process = require('child_process');
 
-const gcloudBinPath = '/home/jburet/google-cloud-sdk/bin/gcloud';
-
 // path where to find all reconciliators
 const cloudFunctionPath = './cloudFunctions/';
 
@@ -44,11 +42,12 @@ for (const f of functions) {
     `\n --- Deploying ${f.name} on topic reconciliator_${f.name} \n\n `,
   );
 
-  const shString = `${gcloudBinPath} beta functions deploy ${
+  const shString = `gcloud beta functions deploy ${
     f.name
   } --trigger-topic=reconciliator_${f.name} --set-env-vars ENV=${
     f.env
   } --runtime nodejs8 --source=.`;
+  console.log(shString);
 
   process.exec(shString, (err, stdout, stderr) => {
     console.log(err, stdout, stderr);
