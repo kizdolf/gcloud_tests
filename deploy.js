@@ -9,7 +9,7 @@ const process = require('child_process');
 const fs = require('fs');
 
 // path where to find all reconciliators
-const cloudFunctionPath = './cloudFunctions/';
+const cloudFunctionPath = './reconciliators/';
 
 // array that will contains all finals functions name
 const functions = [];

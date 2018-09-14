@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "topics": "node ./index.js",
     "deploy": "node ./deploy.js"
   },
   "author": "",

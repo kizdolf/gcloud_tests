@@ -5,7 +5,7 @@
 const glob = require('glob');
 
 // path where to find all reconciliators
-const cloudFunctionPath = './cloudFunctions/';
+const cloudFunctionPath = './reconciliators/';
 
 // exported functions
 const toExports = {};
