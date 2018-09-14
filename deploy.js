@@ -4,9 +4,9 @@
  *
  * Functions are scaned the same way (yeah, duplicated code) and exported by index.js
  */
-
 const glob = require('glob');
 const process = require('child_process');
+const fs = require('fs');
 
 // path where to find all reconciliators
 const cloudFunctionPath = './cloudFunctions/';
@@ -37,19 +37,14 @@ for (const file of files) {
   }
 }
 
+let strs = '';
 for (const f of functions) {
-  console.log(
-    `\n --- Deploying ${f.name} on topic reconciliator_${f.name} \n\n `,
-  );
-
   const shString = `gcloud beta functions deploy ${
     f.name
   } --trigger-topic=reconciliator_${f.name} --set-env-vars ENV=${
     f.env
   } --runtime nodejs8 --source=.`;
-  console.log(shString);
-
-  process.exec(shString, (err, stdout, stderr) => {
-    console.log(err, stdout, stderr);
-  });
+  strs += '\n' + shString;
 }
+
+fs.writeFileSync('toDeploy.txt', strs);

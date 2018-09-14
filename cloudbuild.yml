@@ -1,5 +1,22 @@
 steps:
   - name: 'gcr.io/cloud-builders/npm:latest'
-    args: ['--prefix', './', 'install']
+    args:
+      - '--prefix'
+      - './'
+      - 'install'
   - name: 'gcr.io/cloud-builders/npm:latest'
-    args: ['--prefix', './', 'run', 'deploy']
+    args:
+      - '--prefix'
+      - './'
+      - 'run'
+      - 'deploy'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        while IFS= read -r line
+        do
+          echo "$line"
+          $line
+        done <"./toDeploy.txt"
